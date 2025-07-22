@@ -13,7 +13,7 @@ export const MeetingsView = () => {
 
     return(
         <div>
-            {JSON.stringify(data)}
+            Data Table
         </div>
     )
 }
