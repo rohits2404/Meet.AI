@@ -43,7 +43,6 @@ export const useConfirm = ( title: string, description: string ): [() => JSX.Ele
                 </Button>
                 <Button
                 onClick={handleConfirm}
-                variant={"outline"}
                 className="w-full lg:w-auto"
                 >
                     Confirm
