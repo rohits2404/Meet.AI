@@ -1,9 +1,12 @@
 "use client"
 
+import { DataTable } from "@/components/data-table";
 import { ErrorState } from "@/components/error-state";
 import { LoadingState } from "@/components/loading-state";
 import { useTRPC } from "@/trpc/client"
 import { useSuspenseQuery } from "@tanstack/react-query";
+import { columns } from "../components/columns";
+import { EmptyState } from "@/components/empty-state";
 
 export const MeetingsView = () => {
 
@@ -12,8 +15,14 @@ export const MeetingsView = () => {
     const { data } = useSuspenseQuery(trpc.meetings.getMany.queryOptions({}))
 
     return(
-        <div>
-            Data Table
+        <div className="flex-1 pb-4 px-4 md:px-8 flex flex-col gap-y-4">
+            <DataTable data={data.items} columns={columns}/>
+            {data.items.length === 0 && (
+                <EmptyState 
+                title="Create Your First Meeting"
+                description="Schedule a Meeting to connect with others. Each Meeting lets you collaborate, share ideas, and interact with participants in real time."
+                />
+            )}
         </div>
     )
 }
